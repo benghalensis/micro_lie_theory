@@ -2,6 +2,8 @@
 
 Paper link: [https://arxiv.org/pdf/1812.01537](https://arxiv.org/pdf/1812.01537)
 
+[Nomenclature](notes/nomenclature.md)
+
 ---
 
 Intro about what we are trying to do with this:
@@ -141,15 +143,15 @@ Notes:
 
 [Tangent Space - SO3](notes/tangent-space-so3.md)
 
-| Lie group M, ◦ | size | dim | X ∈ M | Constraint | τ∧ ∈ m | τ ∈ Rᵐ | Exp(τ) | Comp. | Action |
+| Lie group $\mathbb{M}, \circ$ | size | dim | Element $\mathcal{X} \in \mathbb{M}$ | Constraint | Tangent element $\epsilon \in \mathfrak{m}$ | Coordinate $\tau \in \mathbb{R}^m$ | $\operatorname{Exp}(\tau)$ | Composition | Action |
 | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- |
-| n-D vector Rⁿ, + | n | n | v ∈ Rⁿ | v − v = 0 | v ∈ Rⁿ | v ∈ Rⁿ | v = exp(v) | v₁+v₂ | v + x |
-| Circle S¹, · | 2 | 1 | z ∈ ℂ | z*z = 1 | iθ ∈ iR | θ ∈ R | z = exp(iθ) | z₁z₂ | z x |
-| Rotation SO(2), · | 4 | 1 | R | R⊤R = I | [θ]× ∈ so(2) | θ ∈ R | R = exp([θ]×) | R₁R₂ | R x |
-| Rigid motion SE(2), · | 9 | 3 | M = [R t; 0 1] | R⊤R = I | [[θ]× ρ; 0 0] ∈ se(2) | (ρ θ) ∈ R³ | exp([[θ]× ρ; 0 0]) | M₁M₂ | Rx+t |
-| 3-sphere S³, · | 4 | 3 | q ∈ ℍ | q*q = 1 | θ/2 ∈ Hₚ | θ ∈ R³ | q = exp(uθ/2) | q₁q₂ | q x q* |
-| Rotation SO(3), · | 9 | 3 | R | R⊤R = I | [θ]× ∈ so(3) | θ ∈ R³ | R = exp([θ]×) | R₁R₂ | R x |
-| Rigid motion SE(3), · | 16 | 6 | M = [R t; 0 1] | R⊤R = I | [[θ]× ρ; 0 0] ∈ se(3) | (ρ θ) ∈ R⁶ | exp([[θ]× ρ; 0 0]) | M₁M₂ | Rx+t |
+| $n$-D vector space $\mathbb{R}^n, +$ | $n$ | $n$ | $v \in \mathbb{R}^n$ | none | $\epsilon \in \mathbb{R}^n$ | $\tau \in \mathbb{R}^n$ | $\operatorname{Exp}(\tau) = \tau$ | $v_1 + v_2$ | $v + x$ |
+| Circle $S^1, \cdot$ | $2$ | $1$ | $z \in \mathbb{C}$ | $z^*z = 1$ | $i\theta \in i\mathbb{R}$ | $\theta \in \mathbb{R}$ | $\operatorname{Exp}(\theta) = \exp(i\theta)$ | $z_1z_2$ | $zx$ |
+| Rotation $SO(2), \cdot$ | $4$ | $1$ | $R \in \mathbb{R}^{2 \times 2}$ | $R^\top R = I$ | $\epsilon \in \mathfrak{so}(2)$ | $\theta \in \mathbb{R}$ | $\operatorname{Exp}(\theta) = \exp(\epsilon)$ | $R_1R_2$ | $Rx$ |
+| Rigid motion $SE(2), \cdot$ | $9$ | $3$ | $H = \begin{bmatrix}R & t \\ 0 & 1\end{bmatrix}$ | $R^\top R = I$ | $\epsilon \in \mathfrak{se}(2)$ | $\tau \in \mathbb{R}^3$ | $\operatorname{Exp}(\tau) = \exp(\epsilon)$ | $H_1H_2$ | $Rx + t$ |
+| Unit quaternions $\mathbb{H}_1, \cdot$ | $4$ | $3$ | $q \in \mathbb{H}$ | $q^*q = 1$ | $\begin{bmatrix}0 \\ \phi\end{bmatrix} \in \mathfrak{h}_1$ | $\phi \in \mathbb{R}^3$ | $\operatorname{Exp}(\phi) = \exp\left(\begin{bmatrix}0 \\ \phi\end{bmatrix}\right)$ | $q_1q_2$ | $qxq^*$ |
+| Rotation $SO(3), \cdot$ | $9$ | $3$ | $R \in \mathbb{R}^{3 \times 3}$ | $R^\top R = I$ | $\epsilon \in \mathfrak{so}(3)$ | $\theta \in \mathbb{R}^3$ | $\operatorname{Exp}(\theta) = \exp(\epsilon)$ | $R_1R_2$ | $Rx$ |
+| Rigid motion $SE(3), \cdot$ | $16$ | $6$ | $H = \begin{bmatrix}R & t \\ 0 & 1\end{bmatrix}$ | $R^\top R = I$ | $\epsilon \in \mathfrak{se}(3)$ | $\tau \in \mathbb{R}^6$ | $\operatorname{Exp}(\tau) = \exp(\epsilon)$ | $H_1H_2$ | $Rx + t$ |
 
 ---
 
