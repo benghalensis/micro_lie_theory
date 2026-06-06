@@ -98,18 +98,26 @@ $$
 
 ## Exp and Log
 
-The exponential map takes a scalar angle $\omega$ and maps it to a unit complex number:
+Lowercase $\exp$ acts on a tangent-space element:
 
 $$
-\operatorname{Exp}(\omega) =
+\exp(i\omega) =
 e^{i\omega} =
 \cos\omega + i\sin\omega
 $$
 
-The logarithm map takes a unit complex number back to the Lie algebra:
+Uppercase $\operatorname{Exp}$ acts on the vector-space coordinate $\omega \in \mathbb{R}$ and returns the corresponding manifold element:
 
 $$
-\operatorname{Log}(z) =
+\operatorname{Exp}(\omega) =
+\exp(i\omega) =
+\cos\omega + i\sin\omega
+$$
+
+The lowercase logarithm returns a tangent-space element:
+
+$$
+\log(z) =
 i\,\operatorname{atan2}(\operatorname{Im}(z), \operatorname{Re}(z))
 $$
 
@@ -119,10 +127,10 @@ $$
 z = x + iy
 $$
 
-then the scalar coordinate of the logarithm is
+then the uppercase logarithm returns the vector-space coordinate:
 
 $$
-\operatorname{Log}(z)^\vee = \operatorname{atan2}(y, x)
+\operatorname{Log}(z) = \operatorname{atan2}(y, x)
 $$
 
 The key idea is that the group constraint $z^*z = 1$ forces valid velocities to lie in a tangent space. When we pull a tangent vector back to the identity using $z^{-1}\dot z$, we get a pure imaginary number, which is an element of the Lie algebra.
