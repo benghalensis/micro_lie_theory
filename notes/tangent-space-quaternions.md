@@ -145,18 +145,40 @@ $$
 
 When unit quaternions are used to represent 3D rotations, the pure imaginary part is related to a 3D rotation vector. The vector $\phi$ does not need to be a unit vector; its norm gives the magnitude, and its normalized direction is the unit axis.
 
-## Exp and Log on unit quaternions
+## exp and log on unit quaternions
 
-The exponential map takes a pure imaginary quaternion and maps it to a unit quaternion. If
+Lowercase $\exp$ acts on a tangent-space element, which is a pure imaginary quaternion:
 
 $$
-\phi \in \mathbb{R}^3,\quad \theta = \|\phi\|,\quad u = \frac{\phi}{\|\phi\|}
+\begin{bmatrix}
+0 \\
+\phi
+\end{bmatrix}
+$$
+
+If
+
+$$
+\begin{bmatrix}
+0 \\
+\phi
+\end{bmatrix}
+\in \mathfrak{h}_1,\quad
+\theta = \|\phi\|,\quad
+u = \frac{\phi}{\|\phi\|}
 $$
 
 then
 
 $$
-\operatorname{Exp}(\phi) =
+\exp
+\left(
+\begin{bmatrix}
+0 \\
+\phi
+\end{bmatrix}
+\right)
+=
 \begin{bmatrix}
 \cos \theta \\
 u\sin \theta
@@ -166,24 +188,21 @@ $$
 Equivalently:
 
 $$
-\operatorname{Exp}(\phi) =
+\exp
+\left(
+\begin{bmatrix}
+0 \\
+\phi
+\end{bmatrix}
+\right)
+=
 \begin{bmatrix}
 \cos \|\phi\| \\
 \dfrac{\phi}{\|\phi\|}\sin \|\phi\|
 \end{bmatrix}
 $$
 
-with the small-angle limit
-
-$$
-\operatorname{Exp}(0) =
-\begin{bmatrix}
-1 \\
-0
-\end{bmatrix}
-$$
-
-The logarithm map takes a unit quaternion back to the Lie algebra. If
+The lowercase logarithm returns a tangent-space element. If
 
 $$
 q =
@@ -196,7 +215,7 @@ $$
 then
 
 $$
-\operatorname{Log}(q) =
+\log(q) =
 \begin{bmatrix}
 0 \\
 \dfrac{\mathbf{v}}{\|\mathbf{v}\|}
@@ -204,10 +223,35 @@ $$
 \end{bmatrix}
 $$
 
-The vector coordinate of the logarithm is
+## Exp and Log on unit quaternions
+
+Uppercase $\operatorname{Exp}$ acts on the vector-space coordinate $\phi \in \mathbb{R}^3$ and returns the corresponding manifold element:
 
 $$
-\operatorname{Log}(q)^\vee =
+\operatorname{Exp}(\phi) \triangleq
+\exp
+\left(
+\begin{bmatrix}
+0 \\
+\phi
+\end{bmatrix}
+\right)
+$$
+
+Therefore:
+
+$$
+\operatorname{Exp}(\phi) =
+\begin{bmatrix}
+\cos \|\phi\| \\
+\dfrac{\phi}{\|\phi\|}\sin \|\phi\|
+\end{bmatrix}
+$$
+
+The uppercase logarithm returns the vector-space coordinate:
+
+$$
+\operatorname{Log}(q) =
 \dfrac{\mathbf{v}}{\|\mathbf{v}\|}
 \operatorname{atan2}(\|\mathbf{v}\|, w)
 $$
@@ -226,16 +270,16 @@ u\sin(\theta/2)
 \end{bmatrix}
 $$
 
-This means the quaternion logarithm gives the half-angle vector:
+This means the uppercase quaternion logarithm gives the half-angle vector:
 
 $$
-\operatorname{Log}(q)^\vee = \frac{\theta}{2}u
+\operatorname{Log}(q) = \frac{\theta}{2}u
 $$
 
 If you want the usual 3D rotation vector, you multiply by $2$:
 
 $$
-\theta u = 2\operatorname{Log}(q)^\vee
+\theta u = 2\operatorname{Log}(q)
 $$
 
 So for quaternions, be clear about which object you want:
