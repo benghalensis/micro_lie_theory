@@ -1,82 +1,128 @@
 # Tangent Space - Complex Numbers
 
+![Tangent space for complex numbers](../assets/tangest-space-for-complex-numbers.png)
+
 ## Unit complex numbers using the group constraint
 
-We can derive the Lie algebra of unit complex numbers using the group constraint.
-
-The unit complex group is
+The unit complex numbers form the circle group:
 
 $$
-S^1 = \{z \in \mathbb{C} : z^* z = 1\}
+S^1 = \{z \in \mathbb{C} : z^*z = 1\}
 $$
 
-where $z^*$ is the complex conjugate.
-
-The group constraint is
+where $z^*$ is the complex conjugate. The constraint
 
 $$
-z^* z = 1
+z^*z = 1
 $$
 
-This means the complex number must always stay on the unit circle.
+means the complex number must always stay on the unit circle.
 
-If (z(t)) is a unit complex number moving over time, then differentiating the constraint gives a condition on its velocity (dot{z}). This tells us what valid tangent vectors look like.
+Now suppose $z(t)$ is a unit complex number moving over time. Its velocity is $\dot z(t)$. Since $z(t)$ must stay on the unit circle, its velocity cannot point in an arbitrary direction in $\mathbb{C}$. It must be tangent to the circle.
 
-The important result is
-
-$$
-z^{-1}\dot{z} = z^*\dot{z}
-$$
-
-and this quantity must be a pure imaginary complex number:
+To find the tangent condition, differentiate the constraint:
 
 $$
-z^*\dot{z} = i\omega: \omega \in \mathbb{R}
+\frac{d}{dt}(z^*z) = 0
 $$
 
-So the Lie algebra of unit complex numbers is the space of pure imaginary numbers:
+Using the product rule:
 
 $$
-\mathfrak{s}^1
-\{i\omega : \omega \in \mathbb{R}\}
+\dot z^*z + z^*\dot z = 0
 $$
 
-Intuitively:
+Now define
+
+$$
+a = z^*\dot z
+$$
+
+Then
+
+$$
+\dot z^*z = a^*
+$$
+
+so the differentiated constraint becomes
+
+$$
+a^* + a = 0
+$$
+
+This says that $a$ has zero real part. Therefore $a$ must be pure imaginary:
+
+$$
+z^*\dot z = i\omega,\quad \omega \in \mathbb{R}
+$$
+
+Since $z^{-1} = z^*$ for unit complex numbers, this is also
+
+$$
+z^{-1}\dot z = i\omega
+$$
+
+Multiplying both sides by $z$ gives the velocity at the point $z$:
+
+$$
+\dot z = zi\omega
+$$
+
+So $z^{-1}\dot z$ is the velocity pulled back from the tangent space at $z$ to the tangent space at the identity, while $\dot z = zi\omega$ is the tangent vector on the circle at $z$.
+
+## Tangent space
+
+At a point $z \in S^1$, the tangent space is
+
+$$
+T_zS^1 = \{zi\omega : \omega \in \mathbb{R}\}
+$$
+
+## Lie algebra
+
+The Lie algebra is the special tangent space at the identity element $1$:
+
+$$
+\mathfrak{u}(1) = T_1S^1 = \{i\omega : \omega \in \mathbb{R}\}
+$$
+
+So the intuition is:
 
 $$
 \text{unit complex group} = \text{valid 2D rotations}
 $$
 
 $$
-\text{complex Lie algebra} = \text{small 1D rotation angles}
+\text{Lie algebra} = \text{small 1D rotation angles}
 $$
 
-The exponential map takes a scalar angle in the Lie algebra and maps it to a unit complex number:
+## Exp and Log
+
+The exponential map takes a scalar angle $\omega$ and maps it to a unit complex number:
 
 $$
-\operatorname{Exp}(\omega)=
-e^{i\omega}=
+\operatorname{Exp}(\omega) =
+e^{i\omega} =
 \cos\omega + i\sin\omega
 $$
 
 The logarithm map takes a unit complex number back to the Lie algebra:
 
 $$
-\operatorname{Log}(z)
-\operatorname{atan2}(\operatorname{Im}(z), \operatorname{Re}(z))
+\operatorname{Log}(z) =
+i\,\operatorname{atan2}(\operatorname{Im}(z), \operatorname{Re}(z))
 $$
 
-where
+If
 
 $$
 z = x + iy
 $$
 
-so equivalently,
+then the scalar coordinate of the logarithm is
 
 $$
-\operatorname{Log}(x+iy)
-\operatorname{atan2}(y,x)
+\operatorname{Log}(z)^\vee = \operatorname{atan2}(y, x)
 $$
 
-The key idea is that the group constraint (z^*z = 1) forces valid complex-number velocities to lie in a tangent space, and when we move that tangent vector back to the identity, we get a pure imaginary number. That pure imaginary number is the Lie algebra.
+The key idea is that the group constraint $z^*z = 1$ forces valid velocities to lie in a tangent space. When we pull a tangent vector back to the identity using $z^{-1}\dot z$, we get a pure imaginary number, which is an element of the Lie algebra.

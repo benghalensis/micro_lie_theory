@@ -84,7 +84,7 @@ $$
 
 ## What is it and why should we care?
 
-Given a Lie group $\mathbb{M}$ and a vector set $\mathbb{V}$, the action of a group element $\mathcal{X} \in \mathbb{M}$ on a vector $v \in \mathbb{V}$  is written $\mathcal{X} \cdot v$, and is a map:
+Given a Lie group $\mathbb{M}$ and a space $\mathbb{V}$ on which $\mathbb{M}$ acts, the action of a group element $\mathcal{X} \in \mathbb{M}$ on an element $v \in \mathbb{V}$ is written $\mathcal{X} \cdot v$, and is a map:
 
 $$
 \cdot : \mathbb{M} \times \mathbb{V} \to \mathbb{V} ; (\mathcal{X}, v) \mapsto \mathcal{X} \cdot v
@@ -98,12 +98,12 @@ For this to be a valid group action, it must satisfy two axioms:
 
 ### Common examples in robotics
 
-| Group | Action |
-| --- | --- |
-| $SO(n)$ — rotation matrices | $R \cdot x \triangleq Rx$ |
-| $SE(n)$ — rigid motion | $H \cdot x \triangleq Rx + t$ |
-| $S^1$ — unit complex numbers | $z \cdot x \triangleq zx$ |
-| $S^3$ — unit quaternions | $q \cdot x \triangleq q \cdot x \cdot q^*$ |
+| Group | Space acted on $\mathbb{V}$ | Action |
+| --- | --- | --- |
+| $SO(n)$ — rotation matrices | $x \in \mathbb{R}^n$ | $R \cdot x \triangleq Rx$ |
+| $SE(n)$ — rigid motion | $x \in \mathbb{R}^n$ | $H \cdot x \triangleq Rx + t$ |
+| $S^1$ — unit complex numbers | $x \in \mathbb{C} \cong \mathbb{R}^2$ | $z \cdot x \triangleq zx$ |
+| $S^3$ — unit quaternions | $x \in \mathbb{H}_p \cong \mathbb{R}^3$ pure imaginary quaternions | $q \cdot x \triangleq q \cdot x \cdot q^*$ |
 
 ---
 
@@ -111,10 +111,7 @@ For this to be a valid group action, it must satisfy two axioms:
 
 A Lie group is not only a group, but also a smooth manifold. Because it is smooth, every point on the manifold has a well-defined tangent space.
 
-<aside>
-🧭
-
-**Tangent space idea**
+**🧭 Tangent space idea**
 
 Suppose a group element $\mathcal{X(t)}$ moves on the Lie group manifold ($\mathbb{M}$). Its velocity is
 
@@ -129,8 +126,6 @@ T_X\mathcal{M}
 $$
 
 The tangent space can be thought of as the local linear approximation of the manifold around (X). Since the manifold is smooth, there are no sharp corners, edges, or spikes, so each point has a unique tangent space.
-
-</aside>
 
 ![Tangent space illustration](assets/tangent-space-illustration.png)
 
