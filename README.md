@@ -143,15 +143,15 @@ Notes:
 
 [Tangent Space - SO3](notes/tangent-space-so3.md)
 
-| Lie group $\mathbb{M}, \circ$ | size | dim | Element $\mathcal{X} \in \mathbb{M}$ | Constraint | Tangent element $\epsilon \in \mathfrak{m}$ | Coordinate $\tau \in \mathbb{R}^m$ | $\operatorname{Exp}(\tau)$ | Composition | Action |
+| Lie group $\mathbb{M}, \circ$ | size | dim | Element $\mathcal{X} \in \mathbb{M}$ | Constraint | Tangent element $\epsilon \in \mathfrak{m}$ | Coordinate $\tau \in \mathbb{R}^m$ | $\mathrm{Exp}(\tau)$ | Composition | Action |
 | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- |
-| $n$-D vector space $\mathbb{R}^n, +$ | $n$ | $n$ | $v \in \mathbb{R}^n$ | none | $\epsilon \in \mathbb{R}^n$ | $\tau \in \mathbb{R}^n$ | $\operatorname{Exp}(\tau) = \tau$ | $v_1 + v_2$ | $v + x$ |
-| Circle $S^1, \cdot$ | $2$ | $1$ | $z \in \mathbb{C}$ | $z^*z = 1$ | $i\theta \in i\mathbb{R}$ | $\theta \in \mathbb{R}$ | $\operatorname{Exp}(\theta) = \exp(i\theta)$ | $z_1z_2$ | $zx$ |
-| Rotation $SO(2), \cdot$ | $4$ | $1$ | $R \in \mathbb{R}^{2 \times 2}$ | $R^\top R = I$ | $\epsilon \in \mathfrak{so}(2)$ | $\theta \in \mathbb{R}$ | $\operatorname{Exp}(\theta) = \exp(\epsilon)$ | $R_1R_2$ | $Rx$ |
-| Rigid motion $SE(2), \cdot$ | $9$ | $3$ | $H = \begin{bmatrix}R & t \\ 0 & 1\end{bmatrix}$ | $R^\top R = I$ | $\epsilon \in \mathfrak{se}(2)$ | $\tau \in \mathbb{R}^3$ | $\operatorname{Exp}(\tau) = \exp(\epsilon)$ | $H_1H_2$ | $Rx + t$ |
-| Unit quaternions $\mathbb{H}_1, \cdot$ | $4$ | $3$ | $q \in \mathbb{H}$ | $q^*q = 1$ | $\begin{bmatrix}0 \\ \phi\end{bmatrix} \in \mathfrak{h}_1$ | $\phi \in \mathbb{R}^3$ | $\operatorname{Exp}(\phi) = \exp\left(\begin{bmatrix}0 \\ \phi\end{bmatrix}\right)$ | $q_1q_2$ | $qxq^*$ |
-| Rotation $SO(3), \cdot$ | $9$ | $3$ | $R \in \mathbb{R}^{3 \times 3}$ | $R^\top R = I$ | $\epsilon \in \mathfrak{so}(3)$ | $\theta \in \mathbb{R}^3$ | $\operatorname{Exp}(\theta) = \exp(\epsilon)$ | $R_1R_2$ | $Rx$ |
-| Rigid motion $SE(3), \cdot$ | $16$ | $6$ | $H = \begin{bmatrix}R & t \\ 0 & 1\end{bmatrix}$ | $R^\top R = I$ | $\epsilon \in \mathfrak{se}(3)$ | $\tau \in \mathbb{R}^6$ | $\operatorname{Exp}(\tau) = \exp(\epsilon)$ | $H_1H_2$ | $Rx + t$ |
+| $n$-D vector space $\mathbb{R}^n, +$ | $n$ | $n$ | $v \in \mathbb{R}^n$ | none | $\epsilon \in \mathbb{R}^n$ | $\tau \in \mathbb{R}^n$ | $\mathrm{Exp}(\tau) = \tau$ | $v_1 + v_2$ | $v + x$ |
+| Circle $S^1, \cdot$ | $2$ | $1$ | $z \in \mathbb{C}$ | $z^*z = 1$ | $i\theta \in i\mathbb{R}$ | $\theta \in \mathbb{R}$ | $\mathrm{Exp}(\theta) = \exp(i\theta)$ | $z_1z_2$ | $zx$ |
+| Rotation $SO(2), \cdot$ | $4$ | $1$ | $R \in \mathbb{R}^{2 \times 2}$ | $R^\top R = I$ | $\epsilon \in \mathfrak{so}(2)$ | $\theta \in \mathbb{R}$ | $\mathrm{Exp}(\theta) = \exp(\epsilon)$ | $R_1R_2$ | $Rx$ |
+| Rigid motion $SE(2), \cdot$ | $9$ | $3$ | $H = \begin{bmatrix}R & t \\ 0 & 1\end{bmatrix}$ | $R^\top R = I$ | $\epsilon \in \mathfrak{se}(2)$ | $\tau \in \mathbb{R}^3$ | $\mathrm{Exp}(\tau) = \exp(\epsilon)$ | $H_1H_2$ | $Rx + t$ |
+| Unit quaternions $\mathbb{H}_1, \cdot$ | $4$ | $3$ | $q \in \mathbb{H}$ | $q^*q = 1$ | $\begin{bmatrix}0 \\ \phi\end{bmatrix} \in \mathfrak{h}_1$ | $\phi \in \mathbb{R}^3$ | $\mathrm{Exp}(\phi) = \exp\left(\begin{bmatrix}0 \\ \phi\end{bmatrix}\right)$ | $q_1q_2$ | $qxq^*$ |
+| Rotation $SO(3), \cdot$ | $9$ | $3$ | $R \in \mathbb{R}^{3 \times 3}$ | $R^\top R = I$ | $\epsilon \in \mathfrak{so}(3)$ | $\theta \in \mathbb{R}^3$ | $\mathrm{Exp}(\theta) = \exp(\epsilon)$ | $R_1R_2$ | $Rx$ |
+| Rigid motion $SE(3), \cdot$ | $16$ | $6$ | $H = \begin{bmatrix}R & t \\ 0 & 1\end{bmatrix}$ | $R^\top R = I$ | $\epsilon \in \mathfrak{se}(3)$ | $\tau \in \mathbb{R}^6$ | $\mathrm{Exp}(\tau) = \exp(\epsilon)$ | $H_1H_2$ | $Rx + t$ |
 
 ---
 
@@ -186,11 +186,11 @@ Can any group element like $\mathcal{X_3}$ on the manifold be represented using 
 The Lie group and Lie algebra are connected through the exponential and logarithm maps:
 
 $$
-\operatorname{Exp}: \mathfrak{m} \rightarrow \mathcal{M}
+\mathrm{Exp}: \mathfrak{m} \rightarrow \mathcal{M}
 $$
 
 $$
-\operatorname{Log}: \mathcal{M} \rightarrow \mathfrak{m}
+\mathrm{Log}: \mathcal{M} \rightarrow \mathfrak{m}
 $$
 
 The exponential map takes a small vector-like perturbation from the Lie algebra and maps it onto the manifold. The logarithm map does the reverse.
@@ -293,16 +293,16 @@ $$
 There are two closely related versions of exp/log:
 
 1. Lowercase $\exp$ and $\log$ act on the structured Lie algebra $\mathfrak{m}$.
-2. Uppercase $\operatorname{Exp}$ and $\operatorname{Log}$ act on the coordinate vector space $\mathbb{R}^m$.
+2. Uppercase $\mathrm{Exp}$ and $\mathrm{Log}$ act on the coordinate vector space $\mathbb{R}^m$.
 
 Using hat and vee, the coordinate-space maps are:
 
 $$
-\operatorname{Exp}(\tau) \triangleq \exp(\tau^\wedge)
+\mathrm{Exp}(\tau) \triangleq \exp(\tau^\wedge)
 $$
 
 $$
-\operatorname{Log}(\mathcal{X}) \triangleq \left(\log(\mathcal{X})\right)^\vee
+\mathrm{Log}(\mathcal{X}) \triangleq \left(\log(\mathcal{X})\right)^\vee
 $$
 
 So in this repo, when we write a perturbation like $\tau$, we usually mean the vector-coordinate form in $\mathbb{R}^m$. The structured Lie algebra element $\tau^\wedge$ is used only when needed to apply the matrix/complex/quaternion exponential.
@@ -387,7 +387,7 @@ $$
 </details>
 
 <details>
-<summary>$\mathcal{X} \circ \operatorname{Exp}({}^{\mathcal{X}}\tau) = ?$</summary>
+<summary>$\mathcal{X} \circ \mathrm{Exp}({}^{\mathcal{X}}\tau) = ?$</summary>
 
 $$
 \mathcal{Y}
@@ -405,7 +405,7 @@ $$
 </details>
 
 <details>
-<summary>$\operatorname{Log}(\mathcal{X}^{-1} \circ \mathcal{Y}) = ?$</summary>
+<summary>$\mathrm{Log}(\mathcal{X}^{-1} \circ \mathcal{Y}) = ?$</summary>
 
 $$
 {}^{\mathcal{X}}\tau
@@ -427,7 +427,7 @@ $$
 </details>
 
 <details>
-<summary>$\operatorname{Exp}({}^{\mathcal{E}}\tau) \circ \mathcal{X} = ?$</summary>
+<summary>$\mathrm{Exp}({}^{\mathcal{E}}\tau) \circ \mathcal{X} = ?$</summary>
 
 $$
 \mathcal{Y}
@@ -445,7 +445,7 @@ $$
 </details>
 
 <details>
-<summary>$\operatorname{Log}(\mathcal{Y} \circ \mathcal{X}^{-1}) = ?$</summary>
+<summary>$\mathrm{Log}(\mathcal{Y} \circ \mathcal{X}^{-1}) = ?$</summary>
 
 $$
 {}^{\mathcal{E}}\tau
@@ -472,9 +472,9 @@ In the plus/minus figure, this is the conversion from the right perturbation to 
 From the plus/minus section, the same final point $\mathcal{Y}$ can be reached in two ways:
 
 $$
-\operatorname{Exp}({}^{\mathcal{E}}\tau) \circ \mathcal{X}
+\mathrm{Exp}({}^{\mathcal{E}}\tau) \circ \mathcal{X}
 =
-\mathcal{X} \circ \operatorname{Exp}({}^{\mathcal{X}}\tau)
+\mathcal{X} \circ \mathrm{Exp}({}^{\mathcal{X}}\tau)
 $$
 
 So ${}^{\mathcal{E}}\tau$ and ${}^{\mathcal{X}}\tau$ are not different motions. They are the same small motion, just expressed in different tangent frames.
@@ -482,9 +482,9 @@ So ${}^{\mathcal{E}}\tau$ and ${}^{\mathcal{X}}\tau$ are not different motions. 
 For matrix groups, we can move $\mathcal{X}$ to the other side:
 
 $$
-\operatorname{Exp}({}^{\mathcal{E}}\tau)
+\mathrm{Exp}({}^{\mathcal{E}}\tau)
 =
-\mathcal{X} \circ \operatorname{Exp}({}^{\mathcal{X}}\tau) \circ \mathcal{X}^{-1}
+\mathcal{X} \circ \mathrm{Exp}({}^{\mathcal{X}}\tau) \circ \mathcal{X}^{-1}
 $$
 
 Using the exponential identity from above,
@@ -508,11 +508,11 @@ $$
 The **adjoint action** maps a Lie algebra element through a group element:
 
 $$
-\operatorname{Ad}_{\mathcal{X}} : \mathfrak{m} \rightarrow \mathfrak{m}
+\mathrm{Ad}_{\mathcal{X}} : \mathfrak{m} \rightarrow \mathfrak{m}
 $$
 
 $$
-\operatorname{Ad}_{\mathcal{X}}(\tau^\wedge)
+\mathrm{Ad}_{\mathcal{X}}(\tau^\wedge)
 \triangleq
 \mathcal{X}\tau^\wedge\mathcal{X}^{-1}
 $$
@@ -522,26 +522,26 @@ So the relationship between right-side and identity-side tangent elements is
 $$
 ({}^{\mathcal{E}}\tau)^\wedge
 =
-\operatorname{Ad}_{\mathcal{X}}\left(({}^{\mathcal{X}}\tau)^\wedge\right)
+\mathrm{Ad}_{\mathcal{X}}\left(({}^{\mathcal{X}}\tau)^\wedge\right)
 $$
 
 Useful properties:
 
 $$
-\operatorname{Ad}_{\mathcal{X}}(a\tau^\wedge + b\sigma^\wedge)
+\mathrm{Ad}_{\mathcal{X}}(a\tau^\wedge + b\sigma^\wedge)
 =
-a\operatorname{Ad}_{\mathcal{X}}(\tau^\wedge)
+a\mathrm{Ad}_{\mathcal{X}}(\tau^\wedge)
 +
-b\operatorname{Ad}_{\mathcal{X}}(\sigma^\wedge)
+b\mathrm{Ad}_{\mathcal{X}}(\sigma^\wedge)
 $$
 
 $$
-\operatorname{Ad}_{\mathcal{X}}
+\mathrm{Ad}_{\mathcal{X}}
 \left(
-\operatorname{Ad}_{\mathcal{Y}}(\tau^\wedge)
+\mathrm{Ad}_{\mathcal{Y}}(\tau^\wedge)
 \right)
 =
-\operatorname{Ad}_{\mathcal{X}\circ\mathcal{Y}}(\tau^\wedge)
+\mathrm{Ad}_{\mathcal{X}\circ\mathcal{Y}}(\tau^\wedge)
 $$
 
 ## The Adjoint Matrix

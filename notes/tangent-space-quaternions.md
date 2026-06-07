@@ -219,16 +219,16 @@ $$
 \begin{bmatrix}
 0 \\
 \dfrac{\mathbf{v}}{\|\mathbf{v}\|}
-\operatorname{atan2}(\|\mathbf{v}\|, w)
+\mathrm{atan2}(\|\mathbf{v}\|, w)
 \end{bmatrix}
 $$
 
 ## Exp and Log on unit quaternions
 
-Uppercase $\operatorname{Exp}$ acts on the vector-space coordinate $\phi \in \mathbb{R}^3$ and returns the corresponding manifold element:
+Uppercase $\mathrm{Exp}$ acts on the vector-space coordinate $\phi \in \mathbb{R}^3$ and returns the corresponding manifold element:
 
 $$
-\operatorname{Exp}(\phi) \triangleq
+\mathrm{Exp}(\phi) \triangleq
 \exp
 \left(
 \begin{bmatrix}
@@ -241,7 +241,7 @@ $$
 Therefore:
 
 $$
-\operatorname{Exp}(\phi) =
+\mathrm{Exp}(\phi) =
 \begin{bmatrix}
 \cos \|\phi\| \\
 \dfrac{\phi}{\|\phi\|}\sin \|\phi\|
@@ -251,9 +251,9 @@ $$
 The uppercase logarithm returns the vector-space coordinate:
 
 $$
-\operatorname{Log}(q) =
+\mathrm{Log}(q) =
 \dfrac{\mathbf{v}}{\|\mathbf{v}\|}
-\operatorname{atan2}(\|\mathbf{v}\|, w)
+\mathrm{atan2}(\|\mathbf{v}\|, w)
 $$
 
 ## Rotation convention
@@ -273,13 +273,13 @@ $$
 This means the uppercase quaternion logarithm gives the half-angle vector:
 
 $$
-\operatorname{Log}(q) = \frac{\theta}{2}u
+\mathrm{Log}(q) = \frac{\theta}{2}u
 $$
 
 If you want the usual 3D rotation vector, you multiply by $2$:
 
 $$
-\theta u = 2\operatorname{Log}(q)
+\theta u = 2\mathrm{Log}(q)
 $$
 
 So for quaternions, be clear about which object you want:
