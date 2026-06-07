@@ -171,14 +171,12 @@ $$
 then
 
 $$
-\exp
-\left(
+\exp\left(
 \begin{bmatrix}
 0 \\
 \phi
 \end{bmatrix}
-\right)
-=
+\right) =
 \begin{bmatrix}
 \cos \theta \\
 u\sin \theta
@@ -188,14 +186,12 @@ $$
 Equivalently:
 
 $$
-\exp
-\left(
+\exp\left(
 \begin{bmatrix}
 0 \\
 \phi
 \end{bmatrix}
-\right)
-=
+\right) =
 \begin{bmatrix}
 \cos \|\phi\| \\
 \dfrac{\phi}{\|\phi\|}\sin \|\phi\|
