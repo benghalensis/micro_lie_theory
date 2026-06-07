@@ -314,13 +314,7 @@ So in this repo, when we write a perturbation like $\tau$, we usually mean the v
 For multiplicative groups, the exponential map is built from the usual Taylor series:
 
 $$
-\exp(\tau^\wedge)
-=
-\mathcal{E}
-+ \tau^\wedge
-+ \frac{1}{2!}(\tau^\wedge)^2
-+ \frac{1}{3!}(\tau^\wedge)^3
-+ \cdots
+\exp(\tau^\wedge) = \mathcal{E} + \tau^\wedge + \frac{1}{2!}(\tau^\wedge)^2 + \frac{1}{3!}(\tau^\wedge)^3 + \cdots
 $$
 
 Here $\mathcal{E}$ is the identity element of the group. For matrix groups, this is just the identity matrix.
@@ -335,27 +329,19 @@ The logarithm map is then found by inverting the exponential map.
 Some useful exponential identities:
 
 $$
-\exp((t+s)\tau^\wedge)
-=
-\exp(t\tau^\wedge)\exp(s\tau^\wedge)
+\exp((t+s)\tau^\wedge) = \exp(t\tau^\wedge)\exp(s\tau^\wedge)
 $$
 
 $$
-\exp(t\tau^\wedge)
-=
-\exp(\tau^\wedge)^t
+\exp(t\tau^\wedge) = \exp(\tau^\wedge)^t
 $$
 
 $$
-\exp(-\tau^\wedge)
-=
-\exp(\tau^\wedge)^{-1}
+\exp(-\tau^\wedge) = \exp(\tau^\wedge)^{-1}
 $$
 
 $$
-\exp(\mathcal{X}\tau^\wedge\mathcal{X}^{-1})
-=
-\mathcal{X}\exp(\tau^\wedge)\mathcal{X}^{-1}
+\exp(\mathcal{X}\tau^\wedge\mathcal{X}^{-1}) = \mathcal{X}\exp(\tau^\wedge)\mathcal{X}^{-1}
 $$
 
 The last identity is especially useful: conjugating inside the exponential is the same as conjugating the final group element. You can see why by expanding the Taylor series; the middle $\mathcal{X}^{-1}\mathcal{X}$ terms cancel out in every power.
@@ -472,9 +458,7 @@ In the plus/minus figure, this is the conversion from the right perturbation to 
 From the plus/minus section, the same final point $\mathcal{Y}$ can be reached in two ways:
 
 $$
-\mathrm{Exp}({}^{\mathcal{E}}\tau) \circ \mathcal{X}
-=
-\mathcal{X} \circ \mathrm{Exp}({}^{\mathcal{X}}\tau)
+\mathrm{Exp}({}^{\mathcal{E}}\tau) \circ \mathcal{X} = \mathcal{X} \circ \mathrm{Exp}({}^{\mathcal{X}}\tau)
 $$
 
 So ${}^{\mathcal{E}}\tau$ and ${}^{\mathcal{X}}\tau$ are not different motions. They are the same small motion, just expressed in different tangent frames.
@@ -482,25 +466,19 @@ So ${}^{\mathcal{E}}\tau$ and ${}^{\mathcal{X}}\tau$ are not different motions. 
 For matrix groups, we can move $\mathcal{X}$ to the other side:
 
 $$
-\mathrm{Exp}({}^{\mathcal{E}}\tau)
-=
-\mathcal{X} \circ \mathrm{Exp}({}^{\mathcal{X}}\tau) \circ \mathcal{X}^{-1}
+\mathrm{Exp}({}^{\mathcal{E}}\tau) = \mathcal{X} \circ \mathrm{Exp}({}^{\mathcal{X}}\tau) \circ \mathcal{X}^{-1}
 $$
 
 Using the exponential identity from above,
 
 $$
-\mathcal{X}\exp(({}^{\mathcal{X}}\tau)^\wedge)\mathcal{X}^{-1}
-=
-\exp\left(\mathcal{X}({}^{\mathcal{X}}\tau)^\wedge\mathcal{X}^{-1}\right)
+\mathcal{X}\exp(({}^{\mathcal{X}}\tau)^\wedge)\mathcal{X}^{-1} = \exp\left(\mathcal{X}({}^{\mathcal{X}}\tau)^\wedge\mathcal{X}^{-1}\right)
 $$
 
 which gives
 
 $$
-({}^{\mathcal{E}}\tau)^\wedge
-=
-\mathcal{X}({}^{\mathcal{X}}\tau)^\wedge\mathcal{X}^{-1}
+({}^{\mathcal{E}}\tau)^\wedge = \mathcal{X}({}^{\mathcal{X}}\tau)^\wedge\mathcal{X}^{-1}
 $$
 
 ## The Adjoint Action
@@ -512,36 +490,23 @@ $$
 $$
 
 $$
-\mathrm{Ad}_{\mathcal{X}}(\tau^\wedge)
-\triangleq
-\mathcal{X}\tau^\wedge\mathcal{X}^{-1}
+\mathrm{Ad}_{\mathcal{X}}(\tau^\wedge) \triangleq \mathcal{X}\tau^\wedge\mathcal{X}^{-1}
 $$
 
 So the relationship between right-side and identity-side tangent elements is
 
 $$
-({}^{\mathcal{E}}\tau)^\wedge
-=
-\mathrm{Ad}_{\mathcal{X}}\left(({}^{\mathcal{X}}\tau)^\wedge\right)
+({}^{\mathcal{E}}\tau)^\wedge = \mathrm{Ad}_{\mathcal{X}}\left(({}^{\mathcal{X}}\tau)^\wedge\right)
 $$
 
 Useful properties:
 
 $$
-\mathrm{Ad}_{\mathcal{X}}(a\tau^\wedge + b\sigma^\wedge)
-=
-a\mathrm{Ad}_{\mathcal{X}}(\tau^\wedge)
-+
-b\mathrm{Ad}_{\mathcal{X}}(\sigma^\wedge)
+\mathrm{Ad}_{\mathcal{X}}(a\tau^\wedge + b\sigma^\wedge) = a\mathrm{Ad}_{\mathcal{X}}(\tau^\wedge) + b\mathrm{Ad}_{\mathcal{X}}(\sigma^\wedge)
 $$
 
 $$
-\mathrm{Ad}_{\mathcal{X}}
-\left(
-\mathrm{Ad}_{\mathcal{Y}}(\tau^\wedge)
-\right)
-=
-\mathrm{Ad}_{\mathcal{X}\circ\mathcal{Y}}(\tau^\wedge)
+\mathrm{Ad}_{\mathcal{X}}\left(\mathrm{Ad}_{\mathcal{Y}}(\tau^\wedge)\right) = \mathrm{Ad}_{\mathcal{X}\circ\mathcal{Y}}(\tau^\wedge)
 $$
 
 ## The Adjoint Matrix
@@ -555,27 +520,19 @@ $$
 $$
 
 $$
-{}^{\mathcal{E}}\tau
-=
-\mathbf{Ad}_{\mathcal{X}}\,{}^{\mathcal{X}}\tau
+{}^{\mathcal{E}}\tau = \mathbf{Ad}_{\mathcal{X}}\,{}^{\mathcal{X}}\tau
 $$
 
 It is computed by applying vee after the group conjugation:
 
 $$
-\mathbf{Ad}_{\mathcal{X}}\tau
-=
-\left(
-\mathcal{X}\tau^\wedge\mathcal{X}^{-1}
-\right)^\vee
+\mathbf{Ad}_{\mathcal{X}}\tau = \left(\mathcal{X}\tau^\wedge\mathcal{X}^{-1}\right)^\vee
 $$
 
 So, practically:
 
 $$
-\mathcal{X} \oplus {}^{\mathcal{X}}\tau
-=
-\left(\mathbf{Ad}_{\mathcal{X}}\,{}^{\mathcal{X}}\tau\right) \oplus \mathcal{X}
+\mathcal{X} \oplus {}^{\mathcal{X}}\tau = \left(\mathbf{Ad}_{\mathcal{X}}\,{}^{\mathcal{X}}\tau\right) \oplus \mathcal{X}
 $$
 
 The adjoint matrix lets us move tangent vectors between frames. In this repo, when we say "adjoint", we usually mean this matrix version because it works directly on perturbation vectors, Jacobians, and covariance matrices.
@@ -583,15 +540,11 @@ The adjoint matrix lets us move tangent vectors between frames. In this repo, wh
 More useful properties:
 
 $$
-\mathbf{Ad}_{\mathcal{X}^{-1}}
-=
-\mathbf{Ad}_{\mathcal{X}}^{-1}
+\mathbf{Ad}_{\mathcal{X}^{-1}} = \mathbf{Ad}_{\mathcal{X}}^{-1}
 $$
 
 $$
-\mathbf{Ad}_{\mathcal{X}\circ\mathcal{Y}}
-=
-\mathbf{Ad}_{\mathcal{X}}\mathbf{Ad}_{\mathcal{Y}}
+\mathbf{Ad}_{\mathcal{X}\circ\mathcal{Y}} = \mathbf{Ad}_{\mathcal{X}}\mathbf{Ad}_{\mathcal{Y}}
 $$
 
 # Derivatives on Lie groups
@@ -605,9 +558,7 @@ $$
 Consider a rotations $[\theta_x, \theta_y, \theta_z]$ and we perturb this by $[\delta\theta_x, \delta\theta_y, \delta\theta_z]$, so the covariance will be:
 
 $$
-
-\Sigma_\theta
-=
+\Sigma_\theta =
 \begin{bmatrix}
 \delta\theta_x^2 & 0 & 0 \\
 0 & \delta\theta_y^2 & 0 \\
