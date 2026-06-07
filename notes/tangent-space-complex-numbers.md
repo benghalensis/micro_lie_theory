@@ -106,10 +106,10 @@ e^{i\omega} =
 \cos\omega + i\sin\omega
 $$
 
-Uppercase $\operatorname{Exp}$ acts on the vector-space coordinate $\omega \in \mathbb{R}$ and returns the corresponding manifold element:
+Uppercase $\mathrm{Exp}$ acts on the vector-space coordinate $\omega \in \mathbb{R}$ and returns the corresponding manifold element:
 
 $$
-\operatorname{Exp}(\omega) =
+\mathrm{Exp}(\omega) =
 \exp(i\omega) =
 \cos\omega + i\sin\omega
 $$
@@ -118,7 +118,7 @@ The lowercase logarithm returns a tangent-space element:
 
 $$
 \log(z) =
-i\,\operatorname{atan2}(\operatorname{Im}(z), \operatorname{Re}(z))
+i\,\mathrm{atan2}(\mathrm{Im}(z), \mathrm{Re}(z))
 $$
 
 If
@@ -130,7 +130,7 @@ $$
 then the uppercase logarithm returns the vector-space coordinate:
 
 $$
-\operatorname{Log}(z) = \operatorname{atan2}(y, x)
+\mathrm{Log}(z) = \mathrm{atan2}(y, x)
 $$
 
 The key idea is that the group constraint $z^*z = 1$ forces valid velocities to lie in a tangent space. When we pull a tangent vector back to the identity using $z^{-1}\dot z$, we get a pure imaginary number, which is an element of the Lie algebra.

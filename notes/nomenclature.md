@@ -64,22 +64,22 @@ $$
 \log : \mathbb{M} \to \mathfrak{m}
 $$
 
-Uppercase $\operatorname{Exp}$ maps a vector-space coordinate to a manifold element:
+Uppercase $\mathrm{Exp}$ maps a vector-space coordinate to a manifold element:
 
 $$
-\operatorname{Exp} : \mathbb{R}^m \to \mathbb{M}
+\mathrm{Exp} : \mathbb{R}^m \to \mathbb{M}
 $$
 
-Uppercase $\operatorname{Log}$ maps a manifold element to a vector-space coordinate:
+Uppercase $\mathrm{Log}$ maps a manifold element to a vector-space coordinate:
 
 $$
-\operatorname{Log} : \mathbb{M} \to \mathbb{R}^m
+\mathrm{Log} : \mathbb{M} \to \mathbb{R}^m
 $$
 
 So the convention is:
 
 $$
-\operatorname{Exp}(\tau) = \exp(\epsilon)
+\mathrm{Exp}(\tau) = \exp(\epsilon)
 $$
 
 where $\tau$ is the vector-space coordinate corresponding to the tangent-space element $\epsilon$.
