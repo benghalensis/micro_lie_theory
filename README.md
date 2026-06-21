@@ -364,7 +364,15 @@ We use the same generic notation from [Nomenclature](notes/nomenclature.md):
 ### Right operators
 
 <details>
-<summary>$\mathcal{X} \oplus {}^{\mathcal{X}}\tau = ?$</summary>
+<summary>Right plus operator</summary>
+
+Question:
+
+$$
+\mathcal{X} \oplus {}^{\mathcal{X}}\tau = ?
+$$
+
+Answer:
 
 $$
 \mathcal{Y}
@@ -373,7 +381,15 @@ $$
 </details>
 
 <details>
-<summary>$\mathcal{X} \circ \mathrm{Exp}({}^{\mathcal{X}}\tau) = ?$</summary>
+<summary>Right exponential form</summary>
+
+Question:
+
+$$
+\mathcal{X} \circ \mathrm{Exp}({}^{\mathcal{X}}\tau) = ?
+$$
+
+Answer:
 
 $$
 \mathcal{Y}
@@ -382,7 +398,15 @@ $$
 </details>
 
 <details>
-<summary>$\mathcal{Y} \ominus \mathcal{X} = ?$</summary>
+<summary>Right minus operator</summary>
+
+Question:
+
+$$
+\mathcal{Y} \ominus \mathcal{X} = ?
+$$
+
+Answer:
 
 $$
 {}^{\mathcal{X}}\tau
@@ -391,7 +415,15 @@ $$
 </details>
 
 <details>
-<summary>$\mathrm{Log}(\mathcal{X}^{-1} \circ \mathcal{Y}) = ?$</summary>
+<summary>Right logarithm form</summary>
+
+Question:
+
+$$
+\mathrm{Log}(\mathcal{X}^{-1} \circ \mathcal{Y}) = ?
+$$
+
+Answer:
 
 $$
 {}^{\mathcal{X}}\tau
@@ -404,7 +436,15 @@ $$
 ### Left operators
 
 <details>
-<summary>${}^{\mathcal{E}}\tau \oplus \mathcal{X} = ?$</summary>
+<summary>Left plus operator</summary>
+
+Question:
+
+$$
+{}^{\mathcal{E}}\tau \oplus \mathcal{X} = ?
+$$
+
+Answer:
 
 $$
 \mathcal{Y}
@@ -413,7 +453,15 @@ $$
 </details>
 
 <details>
-<summary>$\mathrm{Exp}({}^{\mathcal{E}}\tau) \circ \mathcal{X} = ?$</summary>
+<summary>Left exponential form</summary>
+
+Question:
+
+$$
+\mathrm{Exp}({}^{\mathcal{E}}\tau) \circ \mathcal{X} = ?
+$$
+
+Answer:
 
 $$
 \mathcal{Y}
@@ -422,7 +470,15 @@ $$
 </details>
 
 <details>
-<summary>$\mathcal{Y} \ominus \mathcal{X} = ?$</summary>
+<summary>Left minus operator</summary>
+
+Question:
+
+$$
+\mathcal{Y} \ominus \mathcal{X} = ?
+$$
+
+Answer:
 
 $$
 {}^{\mathcal{E}}\tau
@@ -431,7 +487,15 @@ $$
 </details>
 
 <details>
-<summary>$\mathrm{Log}(\mathcal{Y} \circ \mathcal{X}^{-1}) = ?$</summary>
+<summary>Left logarithm form</summary>
+
+Question:
+
+$$
+\mathrm{Log}(\mathcal{Y} \circ \mathcal{X}^{-1}) = ?
+$$
+
+Answer:
 
 $$
 {}^{\mathcal{E}}\tau
@@ -549,9 +613,200 @@ $$
 
 # Derivatives on Lie groups
 
- Right Jacobians on Lie goups
+In probabilistic robotics, many estimation problems are written as maximum a posteriori (MAP) problems. Therefore, assuming that we model the state as a manifold, we need a way to compute the derivatives of the loss function with respect to the state. With these derivatives, or Jacobians, we can perform optimization, uncertainty propagation, and covariance updates while keeping the familiar linear-algebra form used in vector spaces, while the state itself stays on the manifold.
 
- Left Jacobians on Lie goups
+![Gaussians on manifold](assets/gaussians-on-manifold.png)
+
+## Reminder: Jacobians on vector spaces
+
+For a smooth function
+
+$$
+f : \mathbb{R}^m \rightarrow \mathbb{R}^n
+$$
+
+the Jacobian matrix is
+
+$$
+\mathbf{J}
+\triangleq
+\frac{\partial f(x)}{\partial x}
+\in \mathbb{R}^{n \times m}.
+$$
+
+Its $i$-th column is the output change caused by perturbing only the $i$-th input coordinate:
+
+$$
+\mathbf{j}_i
+\triangleq
+\frac{\partial f(x)}{\partial x_i}
+=
+\lim_{h \to 0}
+\frac{f(x + h e_i) - f(x)}{h}
+\in \mathbb{R}^n,
+$$
+
+where $e_i$ is the $i$-th basis vector of $\mathbb{R}^m$.
+
+It is common to write the same idea compactly as
+
+$$
+\mathbf{J}
+=
+\lim_{h \to 0}
+\frac{f(x+h)-f(x)}{h},
+$$
+
+
+## Right Jacobian of a function
+
+Using right perturbations on both the input and the output, define
+
+$$
+\mathbf{J}_r
+\triangleq
+\frac{\partial f(\mathcal{X})}{\partial \mathcal{X}}
+=
+\lim_{\tau \to 0}
+\frac{
+f(\mathcal{X} \oplus {}^{\mathcal{X}}\tau)
+\ominus
+f(\mathcal{X})
+}{
+{}^{\mathcal{X}}\tau
+}.
+$$
+
+Written with $\mathrm{Exp}$ and $\mathrm{Log}$,
+
+$$
+\mathbf{J}_r
+=
+\lim_{\tau \to 0}
+\frac{
+\mathrm{Log}
+\left(
+f(\mathcal{X})^{-1}
+\circ
+f\left(\mathcal{X} \circ \mathrm{Exp}({}^{\mathcal{X}}\tau)\right)
+\right)
+}{
+{}^{\mathcal{X}}\tau
+}.
+$$
+
+The expression inside $\mathrm{Log}$ is the group difference between the unperturbed output and the perturbed output:
+
+$$
+f(\mathcal{X})^{-1}
+\circ
+f\left(\mathcal{X} \circ \mathrm{Exp}({}^{\mathcal{X}}\tau)\right).
+$$
+
+Applying $\mathrm{Log}$ turns that output difference back into a tangent-coordinate vector, which can be divided by the input perturbation.
+
+The right local linearization is
+
+$$
+f(\mathcal{X} \oplus {}^{\mathcal{X}}\tau)
+\approx
+f(\mathcal{X}) \oplus \mathbf{J}_r\,{}^{\mathcal{X}}\tau.
+$$
+
+So $\mathbf{J}_r\,{}^{\mathcal{X}}\tau$ is the output perturbation expressed on the right of $f(\mathcal{X})$.
+
+## Left Jacobian of a function
+
+Using left perturbations on both the input and the output, define
+
+$$
+\mathbf{J}_l
+\triangleq
+\frac{\partial f(\mathcal{X})}{\partial \mathcal{X}}
+=
+\lim_{\tau \to 0}
+\frac{
+f({}^{\mathcal{E}}\tau \oplus \mathcal{X})
+\ominus
+f(\mathcal{X})
+}{
+{}^{\mathcal{E}}\tau
+}.
+$$
+
+Written with $\mathrm{Exp}$ and $\mathrm{Log}$,
+
+$$
+\mathbf{J}_l
+=
+\lim_{\tau \to 0}
+\frac{
+\mathrm{Log}
+\left(
+f\left(\mathrm{Exp}({}^{\mathcal{E}}\tau) \circ \mathcal{X}\right)
+\circ
+f(\mathcal{X})^{-1}
+\right)
+}{
+{}^{\mathcal{E}}\tau
+}.
+$$
+
+The left local linearization is
+
+$$
+f({}^{\mathcal{E}}\tau \oplus \mathcal{X})
+\approx
+\left(\mathbf{J}_l\,{}^{\mathcal{E}}\tau\right) \oplus f(\mathcal{X}).
+$$
+
+So $\mathbf{J}_l\,{}^{\mathcal{E}}\tau$ is the output perturbation expressed from the identity side of $f(\mathcal{X})$.
+
+## Chain rule
+
+These Jacobians are useful because they obey the same matrix chain rule as vector-space Jacobians, as long as the perturbation convention is kept consistent.
+
+If
+
+$$
+f : \mathbb{M} \rightarrow \mathbb{N},
+\qquad
+g : \mathbb{N} \rightarrow \mathbb{P},
+\qquad
+\mathcal{Y} = f(\mathcal{X}),
+\qquad
+\mathcal{Z} = g(\mathcal{Y}),
+$$
+
+then
+
+$$
+\mathcal{Z} = g(f(\mathcal{X})).
+$$
+
+The chain rule says
+
+$$
+\frac{D\mathcal{Z}}{D\mathcal{X}}
+=
+\frac{D\mathcal{Z}}{D\mathcal{Y}}
+\frac{D\mathcal{Y}}{D\mathcal{X}}.
+$$
+
+For right Jacobians, we write this as
+
+$$
+\mathbf{J}^{\mathcal{Z}}_{\mathcal{X},r}
+=
+\mathbf{J}^{\mathcal{Z}}_{\mathcal{Y},r}
+\mathbf{J}^{\mathcal{Y}}_{\mathcal{X},r},
+$$
+
+where $\mathbf{J}^{\mathcal{Y}}_{\mathcal{X},r}$ is evaluated at $\mathcal{X}$ and $\mathbf{J}^{\mathcal{Z}}_{\mathcal{Y},r}$ is evaluated at $\mathcal{Y}=f(\mathcal{X})$.
+
+## Right Jacobian derivations by group
+
+[Right Jacobians - Unit Complex Numbers](notes/right-jacobians-complex-numbers.md)
 
 # Uncertainty in manifolds, covariance propagation
 
