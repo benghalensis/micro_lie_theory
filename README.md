@@ -808,6 +808,8 @@ where $\mathbf{J}^{\mathcal{Y}}_{\mathcal{X},r}$ is evaluated at $\mathcal{X}$ a
 
 [Right Jacobians - Unit Complex Numbers](notes/right-jacobians-complex-numbers.md)
 
+[Right Jacobians - SO3](notes/right-jacobians-so3.md)
+
 # Uncertainty in manifolds, covariance propagation
 
 Consider a rotations $[\theta_x, \theta_y, \theta_z]$ and we perturb this by $[\delta\theta_x, \delta\theta_y, \delta\theta_z]$, so the covariance will be:
@@ -822,3 +824,12 @@ $$
 $$
 
 # Rules for Differentiation
+
+[Landmark-Based Localization and Mapping](notes/landmark-based-localization-and-mapping.md)
+
+[Smoothing and Mapping with Graph Optimization](notes/smoothing-and-mapping-with-graph-optimization.md)
+
+[Smoothing and Mapping with Self-Calibration](notes/smoothing-and-mapping-with-self-calibration.md)
+
+# References
+https://gtsam.org/2021/02/23/uncertainties-part2.html
