@@ -10,7 +10,6 @@ Intro about what we are trying to do with this:
 
 - Perturb on manifold
 - Uncertainty in manifolds, covariance propagation
-- 
 
 ## What is Lie Group.
 
@@ -22,29 +21,29 @@ This operation must satisfy the **group axioms**:
 
 1. **Closure:**
 
-$$
+```math
 \forall \mathcal{X}, \mathcal{Y} \in \mathbb{G},\quad \mathcal{X} \circ \mathcal{Y} \in \mathbb{G}
-$$
+```
 
 1. **Identity element**
 
-$$
+```math
 \exists \mathcal{E} \in \mathbb{G} \text{ such that }
 \mathcal{X} \circ \mathcal{E} = \mathcal{E} \circ \mathcal{X} = \mathcal{X}
-$$
+```
 
 1. **Inverse element**
 
-$$
+```math
 \forall \mathcal{X} \in \mathbb{G},\quad \exists \mathcal{X}^{-1} \in \mathbb{G} \text{ such that } 
 \mathcal{X} \circ \mathcal{X}^{-1} = \mathcal{E}
-$$
+```
 
 1. **Associativity**
 
-$$
-(\mathcal{X} \circ \mathcal{Y}) \circ \mathcal{Z} = \mathcal{X} \circ (\mathcal{Y} \circ \mathcal{Z})
-$$
+```math
+(\mathcal{X} \circ \mathcal{Y}) \circ \mathcal{Z} = \mathcal{X} \circ (\mathcal{Y} \circ \mathcal{Z})
+```
 
 ### 2. It is a smooth manifold.
 
@@ -54,13 +53,13 @@ $$
 
 If you slightly perturb group element $\mathcal{X}$ or $\mathcal{Y}$, then the composed result of $\mathcal{X} \circ \mathcal{Y}$ changes smoothly, without jumps, discontinuities, corners, or undefined derivatives.
 
-$$
+```math
 \mu: \mathbb{G} \times \mathbb{G} \to \mathbb{G}, \quad \mu(\mathcal{X}, \mathcal{Y}) = \mathcal{X} \circ \mathcal{Y} \quad \text{(multiplication is smooth)}
-$$
+```
 
-$$
+```math
 \iota: \mathbb{G} \to \mathbb{G}, \quad \iota(\mathcal{X}) = \mathcal{X}^{-1} \quad \text{(inversion is smooth)}
-$$
+```
 
 ## Examples of Lie Manifolds
 
@@ -88,9 +87,9 @@ $$
 
 Given a Lie group $\mathbb{M}$ and a space $\mathbb{V}$ on which $\mathbb{M}$ acts, the action of a group element $\mathcal{X} \in \mathbb{M}$ on an element $v \in \mathbb{V}$ is written $\mathcal{X} \cdot v$, and is a map:
 
-$$
+```math
 \cdot : \mathbb{M} \times \mathbb{V} \to \mathbb{V} ; (\mathcal{X}, v) \mapsto \mathcal{X} \cdot v
-$$
+```
 
 For this to be a valid group action, it must satisfy two axioms:
 
@@ -117,15 +116,15 @@ A Lie group is not only a group, but also a smooth manifold. Because it is smoot
 
 Suppose a group element $\mathcal{X(t)}$ moves on the Lie group manifold ($\mathbb{M}$). Its velocity is
 
-$$
+```math
 \dot{\mathcal{X}} = \frac{\partial \mathcal{X}}{\partial t}
-$$
+```
 
 This velocity does not live directly on the manifold. Instead, it belongs to the tangent space at the current point $\mathcal{X(t)}$ written as
 
-$$
+```math
 T_X\mathcal{M}
-$$
+```
 
 The tangent space can be thought of as the local linear approximation of the manifold around (X). Since the manifold is smooth, there are no sharp corners, edges, or spikes, so each point has a unique tangent space.
 
@@ -159,21 +158,21 @@ Notes:
 
 The special tangent space at the identity element (E) is called the Lie algebra:
 
-$$
+```math
 \mathfrak{m} \triangleq T_E\mathcal{M}
-$$
+```
 
 Every Lie group has an associated Lie algebra. The Lie algebra is important because it is a vector space, which means we can use normal linear algebra there. Its elements can be represented as vectors in $\mathbb{R}^m$, where (m) is the number of degrees of freedom of the Lie group.
 
 Example:
 
-$$
+```math
 SO(3) \leftrightarrow \mathfrak{so}(3)
-$$
+```
 
-$$
+```math
 SE(3) \leftrightarrow \mathfrak{se}(3)
-$$
+```
 
 ![Lie algebra to manifold map](assets/lie-algebra-manifold-map.png)
 
@@ -185,13 +184,13 @@ Can any group element like $\mathcal{X_3}$ on the manifold be represented using 
 
 The Lie group and Lie algebra are connected through the exponential and logarithm maps:
 
-$$
+```math
 \mathrm{Exp}: \mathfrak{m} \rightarrow \mathcal{M}
-$$
+```
 
-$$
+```math
 \mathrm{Log}: \mathcal{M} \rightarrow \mathfrak{m}
-$$
+```
 
 The exponential map takes a small vector-like perturbation from the Lie algebra and maps it onto the manifold. The logarithm map does the reverse.
 
@@ -210,7 +209,7 @@ Lie algebra elements are the "local motion" objects for a Lie group. The only ca
 
 These are useful mathematically, but annoying to carry around in code and in derivations. For example, an $SO(3)$ tangent vector can be represented as the skew-symmetric matrix
 
-$$
+```math
 \theta^\wedge =
 \begin{bmatrix}
 0 & -\theta_z & \theta_y \\
@@ -218,57 +217,57 @@ $$
 -\theta_y & \theta_x & 0
 \end{bmatrix}
 \in \mathfrak{so}(3)
-$$
+```
 
 but it is much easier to store and manipulate the three numbers
 
-$$
+```math
 \theta =
 \begin{bmatrix}
 \theta_x & \theta_y & \theta_z
 \end{bmatrix}^\top
 \in \mathbb{R}^3
-$$
+```
 
 So the pattern is:
 
-$$
+```math
 \text{structured Lie algebra object} \leftrightarrow \text{plain coordinate vector}
-$$
+```
 
 ## Hat and Vee Operators
 
 The **hat** operator is the thing that turns the easy vector representation into the structured Lie algebra representation.
 
-$$
+```math
 (\cdot)^\wedge : \mathbb{R}^m \rightarrow \mathfrak{m}
-$$
+```
 
 For example, in $SO(3)$ we usually keep the rotation perturbation as a normal vector $\theta \in \mathbb{R}^3$. When we need the skew-symmetric matrix, we apply hat:
 
-$$
+```math
 \theta \mapsto \theta^\wedge \in \mathfrak{so}(3)
-$$
+```
 
 The **vee** operator does the reverse. It takes the structured Lie algebra object and pulls out the plain vector:
 
-$$
+```math
 (\cdot)^\vee : \mathfrak{m} \rightarrow \mathbb{R}^m
-$$
+```
 
-$$
+```math
 \tau^\wedge \mapsto (\tau^\wedge)^\vee = \tau
-$$
+```
 
 They are inverse operations:
 
-$$
+```math
 (\tau^\wedge)^\vee = \tau
-$$
+```
 
-$$
+```math
 \left((\tau^\wedge)^\vee\right)^\wedge = \tau^\wedge
-$$
+```
 
 Example intuition:
 
@@ -280,13 +279,13 @@ Example intuition:
 
 So mentally:
 
-$$
+```math
 \text{vector} \xrightarrow{\text{hat}} \text{Lie algebra object}
-$$
+```
 
-$$
+```math
 \text{Lie algebra object} \xrightarrow{\text{vee}} \text{vector}
-$$
+```
 
 ## Exp and Log Operators
 
@@ -297,13 +296,13 @@ There are two closely related versions of exp/log:
 
 Using hat and vee, the coordinate-space maps are:
 
-$$
+```math
 \mathrm{Exp}(\tau) \triangleq \exp(\tau^\wedge)
-$$
+```
 
-$$
+```math
 \mathrm{Log}(\mathcal{X}) \triangleq \left(\log(\mathcal{X})\right)^\vee
-$$
+```
 
 So in this repo, when we write a perturbation like $\tau$, we usually mean the vector-coordinate form in $\mathbb{R}^m$. The structured Lie algebra element $\tau^\wedge$ is used only when needed to apply the matrix/complex/quaternion exponential.
 
@@ -313,9 +312,9 @@ So in this repo, when we write a perturbation like $\tau$, we usually mean the v
 
 For multiplicative groups, the exponential map is built from the usual Taylor series:
 
-$$
+```math
 \exp(\tau^\wedge) = \mathcal{E} + \tau^\wedge + \frac{1}{2!}(\tau^\wedge)^2 + \frac{1}{3!}(\tau^\wedge)^3 + \cdots
-$$
+```
 
 Here $\mathcal{E}$ is the identity element of the group. For matrix groups, this is just the identity matrix.
 
@@ -328,21 +327,21 @@ The logarithm map is then found by inverting the exponential map.
 
 Some useful exponential identities:
 
-$$
+```math
 \exp((t+s)\tau^\wedge) = \exp(t\tau^\wedge)\exp(s\tau^\wedge)
-$$
+```
 
-$$
+```math
 \exp(t\tau^\wedge) = \exp(\tau^\wedge)^t
-$$
+```
 
-$$
+```math
 \exp(-\tau^\wedge) = \exp(\tau^\wedge)^{-1}
-$$
+```
 
-$$
+```math
 \exp(\mathcal{X}\tau^\wedge\mathcal{X}^{-1}) = \mathcal{X}\exp(\tau^\wedge)\mathcal{X}^{-1}
-$$
+```
 
 The last identity is especially useful: conjugating inside the exponential is the same as conjugating the final group element. You can see why by expanding the Taylor series; the middle $\mathcal{X}^{-1}\mathcal{X}$ terms cancel out in every power.
 
@@ -368,15 +367,15 @@ We use the same generic notation from [Nomenclature](notes/nomenclature.md):
 
 Question:
 
-$$
+```math
 \mathcal{X} \oplus {}^{\mathcal{X}}\tau = ?
-$$
+```
 
 Answer:
 
-$$
+```math
 \mathcal{Y}
-$$
+```
 
 </details>
 
@@ -385,15 +384,15 @@ $$
 
 Question:
 
-$$
+```math
 \mathcal{X} \circ \mathrm{Exp}({}^{\mathcal{X}}\tau) = ?
-$$
+```
 
 Answer:
 
-$$
+```math
 \mathcal{Y}
-$$
+```
 
 </details>
 
@@ -402,15 +401,15 @@ $$
 
 Question:
 
-$$
+```math
 \mathcal{Y} \ominus \mathcal{X} = ?
-$$
+```
 
 Answer:
 
-$$
+```math
 {}^{\mathcal{X}}\tau
-$$
+```
 
 </details>
 
@@ -419,15 +418,15 @@ $$
 
 Question:
 
-$$
+```math
 \mathrm{Log}(\mathcal{X}^{-1} \circ \mathcal{Y}) = ?
-$$
+```
 
 Answer:
 
-$$
+```math
 {}^{\mathcal{X}}\tau
-$$
+```
 
 </details>
 
@@ -440,15 +439,15 @@ $$
 
 Question:
 
-$$
+```math
 {}^{\mathcal{E}}\tau \oplus \mathcal{X} = ?
-$$
+```
 
 Answer:
 
-$$
+```math
 \mathcal{Y}
-$$
+```
 
 </details>
 
@@ -457,15 +456,15 @@ $$
 
 Question:
 
-$$
+```math
 \mathrm{Exp}({}^{\mathcal{E}}\tau) \circ \mathcal{X} = ?
-$$
+```
 
 Answer:
 
-$$
+```math
 \mathcal{Y}
-$$
+```
 
 </details>
 
@@ -474,15 +473,15 @@ $$
 
 Question:
 
-$$
+```math
 \mathcal{Y} \ominus \mathcal{X} = ?
-$$
+```
 
 Answer:
 
-$$
+```math
 {}^{\mathcal{E}}\tau
-$$
+```
 
 </details>
 
@@ -491,15 +490,15 @@ $$
 
 Question:
 
-$$
+```math
 \mathrm{Log}(\mathcal{Y} \circ \mathcal{X}^{-1}) = ?
-$$
+```
 
 Answer:
 
-$$
+```math
 {}^{\mathcal{E}}\tau
-$$
+```
 
 </details>
 
@@ -509,69 +508,69 @@ Say we have a perturbation attached to the tangent space at some group element $
 
 That is exactly what the adjoint does:
 
-$$
+```math
 {}^{\mathcal{X}}\tau
 \quad
 \xrightarrow{\mathbf{Ad}_{\mathcal{X}}}
 \quad
 {}^{\mathcal{E}}\tau
-$$
+```
 
 In the plus/minus figure, this is the conversion from the right perturbation to the equivalent left perturbation.
 
 From the plus/minus section, the same final point $\mathcal{Y}$ can be reached in two ways:
 
-$$
+```math
 \mathrm{Exp}({}^{\mathcal{E}}\tau) \circ \mathcal{X} = \mathcal{X} \circ \mathrm{Exp}({}^{\mathcal{X}}\tau)
-$$
+```
 
 So ${}^{\mathcal{E}}\tau$ and ${}^{\mathcal{X}}\tau$ are not different motions. They are the same small motion, just expressed in different tangent frames.
 
 For matrix groups, we can move $\mathcal{X}$ to the other side:
 
-$$
+```math
 \mathrm{Exp}({}^{\mathcal{E}}\tau) = \mathcal{X} \circ \mathrm{Exp}({}^{\mathcal{X}}\tau) \circ \mathcal{X}^{-1}
-$$
+```
 
 Using the exponential identity from above,
 
-$$
+```math
 \mathcal{X}\exp(({}^{\mathcal{X}}\tau)^\wedge)\mathcal{X}^{-1} = \exp\left(\mathcal{X}({}^{\mathcal{X}}\tau)^\wedge\mathcal{X}^{-1}\right)
-$$
+```
 
 which gives
 
-$$
+```math
 ({}^{\mathcal{E}}\tau)^\wedge = \mathcal{X}({}^{\mathcal{X}}\tau)^\wedge\mathcal{X}^{-1}
-$$
+```
 
 ## The Adjoint Action
 
 The **adjoint action** maps a Lie algebra element through a group element:
 
-$$
+```math
 \mathrm{Ad}_{\mathcal{X}} : \mathfrak{m} \rightarrow \mathfrak{m}
-$$
+```
 
-$$
+```math
 \mathrm{Ad}_{\mathcal{X}}(\tau^\wedge) \triangleq \mathcal{X}\tau^\wedge\mathcal{X}^{-1}
-$$
+```
 
 So the relationship between right-side and identity-side tangent elements is
 
-$$
+```math
 ({}^{\mathcal{E}}\tau)^\wedge = \mathrm{Ad}_{\mathcal{X}}\left(({}^{\mathcal{X}}\tau)^\wedge\right)
-$$
+```
 
 Useful properties:
 
-$$
+```math
 \mathrm{Ad}_{\mathcal{X}}(a\tau^\wedge + b\sigma^\wedge) = a\mathrm{Ad}_{\mathcal{X}}(\tau^\wedge) + b\mathrm{Ad}_{\mathcal{X}}(\sigma^\wedge)
-$$
+```
 
-$$
+```math
 \mathrm{Ad}_{\mathcal{X}}\left(\mathrm{Ad}_{\mathcal{Y}}(\tau^\wedge)\right) = \mathrm{Ad}_{\mathcal{X}\circ\mathcal{Y}}(\tau^\wedge)
-$$
+```
 
 ## The Adjoint Matrix
 
@@ -579,37 +578,37 @@ Because the adjoint action is linear, we can represent it as a matrix acting on 
 
 This matrix is also usually called the **adjoint**:
 
-$$
+```math
 \mathbf{Ad}_{\mathcal{X}} : \mathbb{R}^m \rightarrow \mathbb{R}^m
-$$
+```
 
-$$
+```math
 {}^{\mathcal{E}}\tau = \mathbf{Ad}_{\mathcal{X}}\,{}^{\mathcal{X}}\tau
-$$
+```
 
 It is computed by applying vee after the group conjugation:
 
-$$
+```math
 \mathbf{Ad}_{\mathcal{X}}\tau = \left(\mathcal{X}\tau^\wedge\mathcal{X}^{-1}\right)^\vee
-$$
+```
 
 So, practically:
 
-$$
+```math
 \mathcal{X} \oplus {}^{\mathcal{X}}\tau = \left(\mathbf{Ad}_{\mathcal{X}}\,{}^{\mathcal{X}}\tau\right) \oplus \mathcal{X}
-$$
+```
 
 The adjoint matrix lets us move tangent vectors between frames. In this repo, when we say "adjoint", we usually mean this matrix version because it works directly on perturbation vectors, Jacobians, and covariance matrices.
 
 More useful properties:
 
-$$
+```math
 \mathbf{Ad}_{\mathcal{X}^{-1}} = \mathbf{Ad}_{\mathcal{X}}^{-1}
-$$
+```
 
-$$
+```math
 \mathbf{Ad}_{\mathcal{X}\circ\mathcal{Y}} = \mathbf{Ad}_{\mathcal{X}}\mathbf{Ad}_{\mathcal{Y}}
-$$
+```
 
 # Derivatives on Lie groups
 
@@ -621,22 +620,22 @@ In probabilistic robotics, many estimation problems are written as maximum a pos
 
 For a smooth function
 
-$$
+```math
 f : \mathbb{R}^m \rightarrow \mathbb{R}^n
-$$
+```
 
 the Jacobian matrix is
 
-$$
+```math
 \mathbf{J}
 \triangleq
 \frac{\partial f(x)}{\partial x}
 \in \mathbb{R}^{n \times m}.
-$$
+```
 
 Its $i$-th column is the output change caused by perturbing only the $i$-th input coordinate:
 
-$$
+```math
 \mathbf{j}_i
 \triangleq
 \frac{\partial f(x)}{\partial x_i}
@@ -644,25 +643,25 @@ $$
 \lim_{h \to 0}
 \frac{f(x + h e_i) - f(x)}{h}
 \in \mathbb{R}^n,
-$$
+```
 
 where $e_i$ is the $i$-th basis vector of $\mathbb{R}^m$.
 
 It is common to write the same idea compactly as
 
-$$
+```math
 \mathbf{J}
 =
 \lim_{h \to 0}
 \frac{f(x+h)-f(x)}{h},
-$$
+```
 
 
 ## Right Jacobian of a function
 
 Using right perturbations on both the input and the output, define
 
-$$
+```math
 \mathbf{J}_r
 \triangleq
 \frac{\partial f(\mathcal{X})}{\partial \mathcal{X}}
@@ -675,11 +674,11 @@ f(\mathcal{X})
 }{
 {}^{\mathcal{X}}\tau
 }.
-$$
+```
 
 Written with $\mathrm{Exp}$ and $\mathrm{Log}$,
 
-$$
+```math
 \mathbf{J}_r
 =
 \lim_{\tau \to 0}
@@ -693,25 +692,25 @@ f\left(\mathcal{X} \circ \mathrm{Exp}({}^{\mathcal{X}}\tau)\right)
 }{
 {}^{\mathcal{X}}\tau
 }.
-$$
+```
 
 The expression inside $\mathrm{Log}$ is the group difference between the unperturbed output and the perturbed output:
 
-$$
+```math
 f(\mathcal{X})^{-1}
 \circ
 f\left(\mathcal{X} \circ \mathrm{Exp}({}^{\mathcal{X}}\tau)\right).
-$$
+```
 
 Applying $\mathrm{Log}$ turns that output difference back into a tangent-coordinate vector, which can be divided by the input perturbation.
 
 The right local linearization is
 
-$$
+```math
 f(\mathcal{X} \oplus {}^{\mathcal{X}}\tau)
 \approx
 f(\mathcal{X}) \oplus \mathbf{J}_r\,{}^{\mathcal{X}}\tau.
-$$
+```
 
 So $\mathbf{J}_r\,{}^{\mathcal{X}}\tau$ is the output perturbation expressed on the right of $f(\mathcal{X})$.
 
@@ -719,7 +718,7 @@ So $\mathbf{J}_r\,{}^{\mathcal{X}}\tau$ is the output perturbation expressed on 
 
 Using left perturbations on both the input and the output, define
 
-$$
+```math
 \mathbf{J}_l
 \triangleq
 \frac{\partial f(\mathcal{X})}{\partial \mathcal{X}}
@@ -732,11 +731,11 @@ f(\mathcal{X})
 }{
 {}^{\mathcal{E}}\tau
 }.
-$$
+```
 
 Written with $\mathrm{Exp}$ and $\mathrm{Log}$,
 
-$$
+```math
 \mathbf{J}_l
 =
 \lim_{\tau \to 0}
@@ -750,15 +749,15 @@ f(\mathcal{X})^{-1}
 }{
 {}^{\mathcal{E}}\tau
 }.
-$$
+```
 
 The left local linearization is
 
-$$
+```math
 f({}^{\mathcal{E}}\tau \oplus \mathcal{X})
 \approx
 \left(\mathbf{J}_l\,{}^{\mathcal{E}}\tau\right) \oplus f(\mathcal{X}).
-$$
+```
 
 So $\mathbf{J}_l\,{}^{\mathcal{E}}\tau$ is the output perturbation expressed from the identity side of $f(\mathcal{X})$.
 
@@ -768,7 +767,7 @@ These Jacobians are useful because they obey the same matrix chain rule as vecto
 
 If
 
-$$
+```math
 f : \mathbb{M} \rightarrow \mathbb{N},
 \qquad
 g : \mathbb{N} \rightarrow \mathbb{P},
@@ -776,31 +775,31 @@ g : \mathbb{N} \rightarrow \mathbb{P},
 \mathcal{Y} = f(\mathcal{X}),
 \qquad
 \mathcal{Z} = g(\mathcal{Y}),
-$$
+```
 
 then
 
-$$
+```math
 \mathcal{Z} = g(f(\mathcal{X})).
-$$
+```
 
 The chain rule says
 
-$$
+```math
 \frac{D\mathcal{Z}}{D\mathcal{X}}
 =
 \frac{D\mathcal{Z}}{D\mathcal{Y}}
 \frac{D\mathcal{Y}}{D\mathcal{X}}.
-$$
+```
 
 For right Jacobians, we write this as
 
-$$
+```math
 \mathbf{J}^{\mathcal{Z}}_{\mathcal{X},r}
 =
 \mathbf{J}^{\mathcal{Z}}_{\mathcal{Y},r}
 \mathbf{J}^{\mathcal{Y}}_{\mathcal{X},r},
-$$
+```
 
 where $\mathbf{J}^{\mathcal{Y}}_{\mathcal{X},r}$ is evaluated at $\mathcal{X}$ and $\mathbf{J}^{\mathcal{Z}}_{\mathcal{Y},r}$ is evaluated at $\mathcal{Y}=f(\mathcal{X})$.
 
@@ -814,14 +813,14 @@ where $\mathbf{J}^{\mathcal{Y}}_{\mathcal{X},r}$ is evaluated at $\mathcal{X}$ a
 
 Consider a rotations $[\theta_x, \theta_y, \theta_z]$ and we perturb this by $[\delta\theta_x, \delta\theta_y, \delta\theta_z]$, so the covariance will be:
 
-$$
+```math
 \Sigma_\theta =
 \begin{bmatrix}
 \delta\theta_x^2 & 0 & 0 \\
 0 & \delta\theta_y^2 & 0 \\
 0 & 0 & \delta\theta_z^2 \\
 \end{bmatrix}
-$$
+```
 
 # Rules for Differentiation
 
