@@ -811,16 +811,248 @@ where $\mathbf{J}^{\mathcal{Y}}_{\mathcal{X},r}$ is evaluated at $\mathcal{X}$ a
 
 # Uncertainty in manifolds, covariance propagation
 
-Consider a rotations $[\theta_x, \theta_y, \theta_z]$ and we perturb this by $[\delta\theta_x, \delta\theta_y, \delta\theta_z]$, so the covariance will be:
+The goal of this section is to answer three questions:
+
+1. What is uncertainty?
+1. How do we define uncertainty for a manifold element?
+1. How does the same uncertainty change when we express it from another frame or reference element?
+
+## What is uncertainty?
+
+Uncertainty means the state is not known exactly. We model it as a random variable with a mean and a covariance.
+
+For a vector state $x \in \mathbb{R}^m$, let the mean be
+
+$$
+\bar{x} = \mathbb{E}[x].
+$$
+
+The error from the mean is
+
+$$
+\delta x = x - \bar{x},
+$$
+
+and the covariance is
+
+$$
+\boldsymbol{\Sigma}_x
+=
+\mathbb{E}
+\left[
+\delta x \delta x^\top
+\right].
+$$
+
+So covariance is not the uncertainty of the state directly. It is the uncertainty of the error around the mean.
+
+For a manifold state $\mathcal{X} \in \mathbb{M}$, we want the same structure:
+
+$$
+\text{state}
+=
+\text{mean}
+\oplus
+\text{error}.
+$$
+
+The difference is that the error cannot be computed with ordinary subtraction. For example, $\mathcal{X} - \bar{\mathcal{X}}$ is not a valid minimal rotation or pose error. Instead, the error is a tangent perturbation.
+
+Using right perturbations around the mean $\bar{\mathcal{X}}$:
+
+$$
+\mathcal{X}
+=
+\bar{\mathcal{X}} \oplus {}^{\bar{\mathcal{X}}}\tau,
+\qquad
+{}^{\bar{\mathcal{X}}}\tau
+=
+\mathcal{X} \ominus \bar{\mathcal{X}}
+\in
+\mathbb{R}^m
+\simeq
+T_{\bar{\mathcal{X}}}\mathbb{M}.
+$$
+
+Then the covariance is defined on this tangent perturbation:
+
+$$
+\boldsymbol{\Sigma}_{\mathcal{X}}
+\triangleq
+\mathbb{E}
+\left[
+{}^{\bar{\mathcal{X}}}\tau
+({}^{\bar{\mathcal{X}}}\tau)^\top
+\right]
+=
+\mathbb{E}
+\left[
+(\mathcal{X} \ominus \bar{\mathcal{X}})
+(\mathcal{X} \ominus \bar{\mathcal{X}})^\top
+\right]
+\in
+\mathbb{R}^{m \times m}.
+$$
+
+For matrix Lie groups, the right-minus above is
+
+$$
+{}^{\bar{\mathcal{X}}}\tau
+=
+\mathrm{Log}(\bar{\mathcal{X}}^{-1} \circ \mathcal{X}).
+$$
+
+The superscript ${}^{\bar{\mathcal{X}}}\tau$ reminds us that this perturbation is expressed in the tangent space attached to $\bar{\mathcal{X}}$.
+
+## Why change the reference?
+
+The same physical uncertainty can look different depending on the frame where the error vector is expressed.
+
+For example, suppose a robot pose has more uncertainty forward than sideways. If we describe that uncertainty in the robot/body frame, "forward" means the robot's current forward direction. If we describe it in the world frame, that same elongated uncertainty has to rotate with the robot's orientation.
+
+This is why covariance is not just a free-floating matrix. It is tied to the tangent frame of its perturbation vector.
+
+Here "reference" can mean two related things:
+
+1. The coordinate frame used to express the perturbation, such as body/local frame or world/global frame.
+1. The manifold element whose tangent space contains the perturbation, such as the current estimate $\bar{\mathcal{X}}$ or a propagated estimate $\bar{\mathcal{Y}}$.
+
+There are three common reasons to change the reference:
+
+1. A sensor or model gives uncertainty in one frame, but the estimator expects it in another frame.
+1. A function maps the uncertain state to a new manifold element, so the uncertainty must be propagated from $\bar{\mathcal{X}}$ to $\bar{\mathcal{Y}}$.
+1. A residual or Jacobian uses a particular perturbation convention, so the covariance and Jacobian must use the same convention.
+
+We can also express the same uncertainty in the identity/global tangent frame using left perturbations:
+
+$$
+\mathcal{X}
+=
+{}^{\mathcal{E}}\tau \oplus \bar{\mathcal{X}}
+=
+\mathrm{Exp}({}^{\mathcal{E}}\tau) \circ \bar{\mathcal{X}},
+$$
+
+with
+
+$$
+{}^{\mathcal{E}}\tau
+=
+\mathcal{X} \ominus \bar{\mathcal{X}}
+=
+\mathrm{Log}(\mathcal{X} \circ \bar{\mathcal{X}}^{-1}).
+$$
+
+The global covariance is
+
+$$
+{}^{\mathcal{E}}\boldsymbol{\Sigma}_{\mathcal{X}}
+\triangleq
+\mathbb{E}
+\left[
+{}^{\mathcal{E}}\tau
+({}^{\mathcal{E}}\tau)^\top
+\right].
+$$
+
+The local and global perturbations are related by the adjoint:
+
+$$
+{}^{\mathcal{E}}\tau
+=
+\mathbf{Ad}_{\bar{\mathcal{X}}}
+\,{}^{\bar{\mathcal{X}}}\tau.
+$$
+
+Therefore the covariance transforms as
+
+$$
+{}^{\mathcal{E}}\boldsymbol{\Sigma}_{\mathcal{X}}
+=
+\mathbf{Ad}_{\bar{\mathcal{X}}}
+\,{}^{\bar{\mathcal{X}}}\boldsymbol{\Sigma}_{\mathcal{X}}
+\mathbf{Ad}_{\bar{\mathcal{X}}}^{\top}.
+$$
+
+The inverse conversion is
+
+$$
+{}^{\bar{\mathcal{X}}}\boldsymbol{\Sigma}_{\mathcal{X}}
+=
+\mathbf{Ad}_{\bar{\mathcal{X}}}^{-1}
+\,{}^{\mathcal{E}}\boldsymbol{\Sigma}_{\mathcal{X}}
+\mathbf{Ad}_{\bar{\mathcal{X}}}^{-\top}.
+$$
+
+For example, for a 3D rotation, a diagonal covariance such as
 
 ```math
 \Sigma_\theta =
 \begin{bmatrix}
-\delta\theta_x^2 & 0 & 0 \\
-0 & \delta\theta_y^2 & 0 \\
-0 & 0 & \delta\theta_z^2 \\
+\sigma_x^2 & 0 & 0 \\
+0 & \sigma_y^2 & 0 \\
+0 & 0 & \sigma_z^2
 \end{bmatrix}
 ```
+
+does not mean the rotation matrix itself has covariance. It means the small tangent perturbation
+
+$$
+\tau =
+\begin{bmatrix}
+\delta\theta_x &
+\delta\theta_y &
+\delta\theta_z
+\end{bmatrix}^{\top}
+$$
+
+has covariance $\Sigma_\theta$. If the uncertainty is specified relative to the body/local frame, use the right perturbation covariance. If it is specified relative to the world/global frame, use the left perturbation covariance. An unobservable direction can be represented conceptually with infinite variance, but in numerical systems it is usually represented with a large finite variance or handled through rank-deficient information matrices.
+
+For propagation through a function
+
+$$
+f : \mathbb{M} \rightarrow \mathbb{N},
+\qquad
+\mathcal{Y} = f(\mathcal{X}),
+$$
+
+linearize around $\bar{\mathcal{X}}$:
+
+$$
+\bar{\mathcal{Y}} = f(\bar{\mathcal{X}}).
+$$
+
+Using the right Jacobian convention,
+
+$$
+f(\bar{\mathcal{X}} \oplus {}^{\bar{\mathcal{X}}}\tau)
+\approx
+\bar{\mathcal{Y}}
+\oplus
+\mathbf{J}_r\,{}^{\bar{\mathcal{X}}}\tau.
+$$
+
+So the propagated covariance is the familiar first-order rule:
+
+$$
+{}^{\bar{\mathcal{Y}}}\boldsymbol{\Sigma}_{\mathcal{Y}}
+\approx
+\mathbf{J}_r
+\,{}^{\bar{\mathcal{X}}}\boldsymbol{\Sigma}_{\mathcal{X}}
+\mathbf{J}_r^\top.
+$$
+
+Using left perturbations gives the matching global-frame version:
+
+$$
+{}^{\mathcal{E}}\boldsymbol{\Sigma}_{\mathcal{Y}}
+\approx
+\mathbf{J}_l
+\,{}^{\mathcal{E}}\boldsymbol{\Sigma}_{\mathcal{X}}
+\mathbf{J}_l^\top.
+$$
+
+The rule is the same as in vector spaces, but only after choosing a tangent-space convention and keeping the covariance and Jacobian in the same convention.
 
 # Rules for Differentiation
 
